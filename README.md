@@ -1,5 +1,6 @@
 <h1 align="center">
-UFS Data Tracking Bot: Data Tracker & Data Uploader Integrated for UFS Datasets to Cloud Data Storage
+UFS Data Tracking Bot: 
+UFS Datasets Transferring to Cloud Data Storage
 </h1>
 
 <p align="center">
