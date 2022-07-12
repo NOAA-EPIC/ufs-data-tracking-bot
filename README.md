@@ -172,9 +172,6 @@ Within the download, you will find the following directories and files:
     > rt_tracker_populate.py
     > rt_tracker_reset.py
 
-* Tracker Demo:
-    > rt_revision_tracker_scripts_demo.ipynb
-    
 * Transfer Scripts:
     > upload_data.py
         * Uploader via AWS SDK
@@ -186,7 +183,10 @@ Within the download, you will find the following directories and files:
         * Dataset reader from UFS data's source
     > progress_bar.py
         * Monitors uploading progress of datasets to cloud  
-        
+
+* Tracker Demo:
+    > rt_revision_tracker_scripts_demo.ipynb
+
 * Transfer Demo:
     > data_xfer2cloud_scripts_demo.ipynb
     
