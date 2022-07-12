@@ -1,5 +1,5 @@
 <h1 align="center">
-UFS Weather Model Data Tracking Bot
+UFS Weather Model Data Tracking Bot: Data Tracker & Data Uploader Integrated for UFS Datasets to Cloud Data Storage
 </h1>
 
 <p align="center">
@@ -26,6 +26,30 @@ __Purpose:__
 
 The purpose of this bot is to detect, track, populate, & transfer the revisions of the timestamp datasets made to the UFS-WM developemnt branch to the cloud bucket reserved for the UFS-WM framework. The data tracking bot will be integrated with Jenkins and will later be integrated with another script which will perform the 2 months window shift of datasets to maintain the NOAA development teams' code managers current practice stored and fulfill the stored data requirements.
 
+The purpose of this program is to transfer the input and baseline datasets residing within the RDHPCS to cloud data storage via chaining API calls to communicate with cloud data storage buckets. The program will support the data required for the current UFS-WM deployed within the RDHPCS as well as support the NOAA development team's data management in maintaining only the datasets committed within the latest N months of their UFS development code (once the program is integrated into Jenkins).
+
+According to Amazon AWS, the following conditions need to be considered when transferring data to cloud data storage:
+
+* Largest object that can be uploaded in a single PUT is 5 GB.
+* Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 TB.
+* For objects larger than 100 MB, Amazon recommends using the Multipart Upload capability.
+* The total volume of data in a cloud data storage bucket are unlimited.
+
+Tools which could be be utilized to perform data transferring & partitioning (Multipart Upload/Download) are:
+
+* AWS SDK
+* AWS CLI
+* AWS S3 REST API
+
+All of the AWS provided tools are built on Boto3.
+
+In this demonstration, the framework will implement Python AWS SDK for transferring the tracked UFS datasets from the RDHPCS, Orion, to the cloud data storage with low latency.
+
+The AWS SDK will be implemented for the following reasons:
+
+To integrate with other python scripts.
+AWS SDK carries addition capabilities/features for data manipulation & transferring compare to the aforementioned alternate tools.
+
 __Capabilities:__
 
 This script will be able to perform the following actions:
@@ -34,6 +58,10 @@ This script will be able to perform the following actions:
 * rt.sh is read, preprocessed & extracts the timestamps of the relevant UFS datasets which has been pushed on GitHub.
 * Generates a file containing the datasets' timestamps
 * Program will compare the last log file with the most recent file containing the datasets' timestamps.
+
+This bot will be able to perform the following actions:
+* Multi-threading & partitioning to the datasets to assist in the optimization in uploading performance of the datasets from on-prem to cloud as it tracks the PR'd timestamped dataset updates pushed by developers & approved by code manager(s) of the UFS-WM.
+
 
 __Future Capabilities:__
 Will be integrated with another script, which will perform the 2 months window shift of datasets to maintain the NOAA development teams' code managers current practice and fulfill the stored data requirements.
@@ -50,9 +78,12 @@ Will be integrated with another script, which will perform the 2 months window s
 
 # Prerequisites
 * Python 3.9
+* Setting up AWS CLI configurations for uploading to Cloud.
+* Setting up conda environment w/in RDHPCS.
+    * Refer to [Environment Setup](#Environment-Setup)
 
 # Dataset
-* N/A
+* On-prem Orion
 
 # Quick Start
 * For demonstration purposes, refer to 'rt_revision_tracker_scripts_demo.ipynb'
@@ -132,21 +163,40 @@ conda env export > [ENVIRONMENT FILENAME].yml
 
 # What's Included
 Within the download, you will find the following directories and files:
-* Demo:
-    > rt_revision_tracker_scripts_demo.ipynb
-* Scripts:
+  
+* Tracker Scripts:
     > rt_revision_tracker.py
     > rt_tracker_populate.py
     > rt_tracker_reset.py
+
+* Tracker Demo:
+    > rt_revision_tracker_scripts_demo.ipynb
+    
+* Transfer Scripts:
+    > upload_data.py
+        * Uploader via AWS SDK
+    > transfer_specific_data.py 
+        * Executable script for specific dataset to transfer to cloud
+    > transfer_bot_data.py  
+        * Executable script for datasets recorded by UFS data tracker bot to transfer to cloud
+    > get_timestamp_data.py
+        * Dataset reader from UFS data's source
+    > progress_bar.py
+        * Monitors uploading progress of datasets to cloud  
+        
+* Transfer Demo:
+    > data_xfer2cloud_scripts_demo.ipynb
+    
 * List of Dependencies: 
-    > git_env.yml
+    > git_env.yml (For Tracker Scripts)
+    > cloud_xfer_env.yml (For Transfer Scripts)
 
 # Documentation
 * Refer to rt_revision_tracker_scripts_demo.ipynb
+* Refer to data_xfer2cloud_scripts_demo.ipynb
 
 # References
 * N/A
 
 # Version:
-* Draft as of 03/14/22
-
+* Draft as of 07/12/22
