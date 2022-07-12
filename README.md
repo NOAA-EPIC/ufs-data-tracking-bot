@@ -5,7 +5,7 @@ UFS Weather Model Data Tracking Bot
 <p align="center">
     <img src="images/tracker_sample_results_img.png" width="1100" height="300">
     <img src="images/uploader_transfer_img.png" width="900" height="500">
-    <img src="images/onprem_datasets_avail_img.png" width="900" height="250">
+    <img src="images/onprem_datasets_avail_img.png" width="900" height="200">
     <img src="images/cloud_data_bucket_img.png" width="400" height="400">
 </p>
 
