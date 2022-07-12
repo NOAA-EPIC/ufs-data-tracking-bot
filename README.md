@@ -10,7 +10,7 @@ UFS Data Transferring Automation to Cloud Data Storage
     <img src="images/tracker_sample_results_img.png" width="1100" height="300">
     <img src="images/uploader_transfer_img.png" width="1100" height="400">
     <img src="images/onprem_datasets_avail_img.png" width="900" height="150">
-    <img src="images/cloud_data_bucket_img.png" width="350" height="400">
+    <img src="images/cloud_data_bucket_img.png" width="375" height="400">
 </p>
 
 <h5 align="center">
