@@ -3,7 +3,10 @@ UFS Data Tracking Bot
 </h1>
 
 <p align="center">
-    <img src="images/header.png" width="1000" height="200">
+    <img src="images/tracker_sample_results_img.png" width="1000" height="200">
+    <img src="images/cloud_data_bucket_img.png" width="1000" height="200">
+    <img src="images/onprem_datasets_avail_img.png" width="1000" height="200">
+    <img src="images/uploader_transfer_img.png" width="1000" height="200">
 </p>
 
 <h5 align="center">
