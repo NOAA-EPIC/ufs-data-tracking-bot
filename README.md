@@ -2,9 +2,9 @@
 UFS Data Tracking Bot: 
 </h1>
 
-<h2 align="center">    
+<h1 align="center">    
 UFS Data Transferring Automation to Cloud Data Storage
-</h2>
+</h1>
 
 <p align="center">
     <img src="images/tracker_sample_results_img.png" width="1100" height="300">
