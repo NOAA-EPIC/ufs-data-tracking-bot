@@ -191,8 +191,8 @@ Within the download, you will find the following directories and files:
     > data_xfer2cloud_scripts_demo.ipynb
     
 * List of Dependencies: 
-    > git_env.yml (For Tracker Scripts)
-    > cloud_xfer_env.yml (For Transfer Scripts)
+    * git_env.yml (For Tracker Scripts)
+    * cloud_xfer_env.yml (For Transfer Scripts)
 
 # Documentation
 * Refer to rt_revision_tracker_scripts_demo.ipynb
