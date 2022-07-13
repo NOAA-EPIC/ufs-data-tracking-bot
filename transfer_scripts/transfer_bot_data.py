@@ -26,7 +26,7 @@ class TransferBotData():
     
             
         # Filter to data tracker bot's timestamps & extract their corresponding UFS data file directories.
-        self.filter2specific_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_tracker_ts_files()
+        self.filter2tracker_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_tracker_ts_files()
     
         # Upload latest retrieval date's recorded timestamped datasets tracked by data tracker bot.
         UploadData(self.orion_rt_data_dir, self.filter2tracker_ts_datasets, use_bucket='rt').upload_files2cloud()
