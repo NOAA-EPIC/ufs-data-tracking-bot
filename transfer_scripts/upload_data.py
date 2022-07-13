@@ -33,11 +33,10 @@ class UploadData():
         
         if use_bucket == 'rt':
             self.bucket_name = 'noaa-ufs-regtests-pds'
-            self.profile_name = 'default'
         else:
             print(f"{use_bucket} Bucket Does Not Exist.")
             
-        self.s3 = boto3.Session(profile_name=self.profile_name).resource('s3')
+        self.s3 = boto3.Session().resource('s3')
         
     def upload_single_file(self, file_dir):
         """
