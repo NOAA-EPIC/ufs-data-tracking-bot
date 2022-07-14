@@ -98,10 +98,17 @@ class GetTimestampData():
         Return (dict): Dictionary partitioning the file directories into the
         dataset types.
         
-        *Note: Will keep 'INPUTDATA_ROOT_WW3' as a key wihtin the mapped dictionary
+        *Note: Will keep 'INPUTDATA_ROOT_WW3' as a key within the mapped dictionary
         -- in case, the NOAA development team decides to migrate WW3_input_data_YYYYMMDD
         out of the input-data-YYYYMMDD folder then, we will need to track the 
         'INPUTDATA_ROOT_WW3' related data files.
+        
+        # ********************************** REMARK (as of 07/14/22) ************************************                   
+        # Filter out the prefix underscore. 
+        # REMARK (as of 07/14/22): The EMC protocol of prefix underscore to datasets must be removed in near future !!!
+        # It is not an ideal protocol and should not be used! WILL REMOVE CONDITION below WHEN CM (POC: Jong)
+        # REMOVES THIS EMC PROTOCOL
+        # ***********************************************************************************************   
 
         """
         
@@ -109,22 +116,29 @@ class GetTimestampData():
         partition_datasets = defaultdict(list) 
         for file_dir in self.file_dirs:
 
-            # Input data files w/ root directory truncated.
-            if any(subfolder in file_dir for subfolder in ['input-data', 'INPUT-DATA']):
-                partition_datasets['INPUTDATA_ROOT'].append(file_dir.replace(self.hpc_dir, ""))
-
-            # Baseline data files w/ root directory truncated.
-            if any(subfolder in file_dir for subfolder in ['develop', 'ufs-public-release', 'DEVELOP', 'UFS-PUBLIC-RELEASE']):
-                partition_datasets['BL_DATE'].append(file_dir.replace(self.hpc_dir, ""))
+           # ********************************** REMARK (as of 07/14/22) ************************************                   
+           # Filter out the prefix underscore. 
+           # REMARK (as of 07/14/22): The EMC protocol of prefix underscore to datasets must be removed in near future !!!
+           # It is not an ideal protocol and should not be used! WILL REMOVE CONDITION below WHEN CM (POC: Jong)
+           # REMOVES THIS EMC PROTOCOL
+           # ***********************************************************************************************               
+            if self.hpc_dir + '_' not in file_dir:
                 
-            # WW3 input data files w/ root directory truncated.
-            if any(subfolder in file_dir for subfolder in ['WW3_input_data', 'ww3_input_data', 'WW3_INPUT_DATA']):
-                partition_datasets['INPUTDATA_ROOT_WW3'].append(file_dir.replace(self.hpc_dir, ""))
-                
-            # BM IC input data files w/ root directory truncated.
-            if any(subfolder in file_dir for subfolder in ['BM_IC', 'bm_ic']):
-                partition_datasets['INPUTDATA_ROOT_BMIC'].append(file_dir.replace(self.hpc_dir, ""))
+                # Input data files w/ root directory truncated.
+                if any(subfolder in file_dir for subfolder in ['input-data', 'INPUT-DATA']):
+                    partition_datasets['INPUTDATA_ROOT'].append(file_dir.replace(self.hpc_dir, ""))
 
+                # Baseline data files w/ root directory truncated.
+                if any(subfolder in file_dir for subfolder in ['develop', 'ufs-public-release', 'DEVELOP', 'UFS-PUBLIC-RELEASE']):
+                    partition_datasets['BL_DATE'].append(file_dir.replace(self.hpc_dir, ""))
+
+                # WW3 input data files w/ root directory truncated.
+                if any(subfolder in file_dir for subfolder in ['WW3_input_data', 'ww3_input_data', 'WW3_INPUT_DATA']):
+                    partition_datasets['INPUTDATA_ROOT_WW3'].append(file_dir.replace(self.hpc_dir, ""))
+
+                # BM IC input data files w/ root directory truncated.
+                if any(subfolder in file_dir for subfolder in ['BM_IC', 'bm_ic']):
+                    partition_datasets['INPUTDATA_ROOT_BMIC'].append(file_dir.replace(self.hpc_dir, ""))        
 
         return partition_datasets    
     
@@ -161,7 +175,10 @@ class GetTimestampData():
         # Extract latest retrival date's recorded timestamped datasets. 
         input_ts, bl_ts, ww3_input_ts, bmic_ts = data_fldrs_dict[max(data_fldrs_dict)]
         
-        # Create dictionary mapping the user's request of timestamps.
+        # Create dictionary mapping data tracker's latest timestamps.
+        # TODO: Change to nested dict & ensure initialized. Then change uplaod_data.py's upload_files2cloud(self) to 
+        # account for nested key 
+        # tracker_ts_dict = collections.defaultdict(lambda: collections.defaultdict(dict))
         tracker_ts_dict = defaultdict(list)
         tracker_ts_dict['INPUTDATA_ROOT'] = input_ts
         tracker_ts_dict['BL_DATE'] = bl_ts
