@@ -30,8 +30,8 @@ class TransferBotData():
     
         # Upload latest retrieval date's recorded timestamped datasets tracked by data tracker bot.
         UploadData(self.orion_rt_data_dir, self.filter2tracker_ts_datasets, use_bucket='rt').upload_files2cloud()
-        print(f"Datasets Retrieved on {max(filter2tracker_ts_datasets)}:\n{filter2tracker_ts_datasets}")
-        print(f"Timestamped Datasets Retrieved on {max(filter2tracker_ts_datasets)} Uploaded to Cloud.")        
+        print(f"Datasets Retrieved on {max(self.filter2tracker_ts_datasets)}:\n{self.filter2tracker_ts_datasets}")
+        print(f"Timestamped Datasets Retrieved on {max(self.filter2tracker_ts_datasets)} Uploaded to Cloud.")        
 
 if __name__ == '__main__': 
     
