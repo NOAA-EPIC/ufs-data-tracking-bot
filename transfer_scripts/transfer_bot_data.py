@@ -36,4 +36,4 @@ class TransferBotData():
 if __name__ == '__main__': 
     
     # Obtain directories for the datasets requested by the user.
-    TransferBotData(linked_home_dir="/home/schin/work", platform="orion")
+    TransferBotData(linked_home_dir="/home/[USERNAME]/work", platform="orion")
