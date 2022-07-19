@@ -31,11 +31,7 @@ class TransferBotData():
         
         # Upload timestamped data which do not exist in cloud.
         self.upload_dne_data()
-        
- if __name__ == '__main__': 
-    
-    # Obtain directories for the datasets requested by the user.
-    TransferBotData(linked_home_dir="", platform="orion")       
+
     def upload_dne_data(self):
         """
         Args:
@@ -76,5 +72,6 @@ class TransferBotData():
         return
     
 if __name__ == '__main__': 
+    
     # Obtain directories for the datasets requested by the user.
     TransferBotData(linked_home_dir="", platform="orion")
