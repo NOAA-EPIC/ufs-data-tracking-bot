@@ -74,3 +74,8 @@ class TransferBotData():
         print(f'Datasets Transferred to Cloud:\n{dne_data}')
         
         return
+    
+if __name__ == '__main__': 
+    
+    # Obtain directories for the datasets requested by the user.
+    TransferBotData(linked_home_dir="", platform="orion")
