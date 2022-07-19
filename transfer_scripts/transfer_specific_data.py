@@ -21,7 +21,7 @@ class TransferSpecificData():
         self.linked_home_dir =  linked_home_dir
 
         if platform == "orion":
-            self.orion_rt_data_dir = self.linked_home_dir + "/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+            self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
         else:
             print("Select a different platform.")
     
@@ -40,4 +40,4 @@ if __name__ == '__main__':
     
     # Obtain directories for the datasets requested by the user.
     input_ts, bl_ts, ww3_input_ts, bmic_ts = [], ['develop-20220304'], [], []
-    TransferSpecificData(input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir="/home/schin/work", platform="orion")
+    TransferSpecificData(input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir="/home/schin", platform="orion")
