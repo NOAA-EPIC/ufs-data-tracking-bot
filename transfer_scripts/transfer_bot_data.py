@@ -20,7 +20,7 @@ class TransferBotData():
         self.linked_home_dir =  linked_home_dir
 
         if platform == "orion":
-            self.orion_rt_data_dir = self.linked_home_dir + "/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+            self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
         else:
             print("Select a different platform.")
     
