@@ -178,12 +178,10 @@ class GetTimestampData():
             
         # Extract latest retrival date's recorded timestamped datasets. 
         input_ts, bl_ts, ww3_input_ts, bmic_ts = data_fldrs_dict[max(data_fldrs_dict)]
-        print(f"\nLatest Datasets Retrieved on {max(data_fldrs_dict)}:\n{data_fldrs_dict}")
+        print('\033[0m' + f"\nLatest Datasets Retrieved on {max(data_fldrs_dict)}:\n" +\
+              '\033[0m' + f"{data_fldrs_dict}")
 
         # Create dictionary mapping data tracker's latest timestamps.
-        # TODO: Change to nested dict & ensure initialized. Then change uplaod_data.py's upload_files2cloud(self) to 
-        # account for nested key 
-        # tracker_ts_dict = collections.defaultdict(lambda: collections.defaultdict(dict))
         tracker_ts_dict = defaultdict(list)
         tracker_ts_dict['INPUTDATA_ROOT'] = input_ts
         tracker_ts_dict['BL_DATE'] = bl_ts
