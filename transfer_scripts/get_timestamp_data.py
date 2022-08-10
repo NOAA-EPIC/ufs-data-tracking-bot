@@ -178,7 +178,7 @@ class GetTimestampData():
             
         # Extract latest retrival date's recorded timestamped datasets. 
         input_ts, bl_ts, ww3_input_ts, bmic_ts = data_fldrs_dict[max(data_fldrs_dict)]
-        print('\033[0m' + f"\nLatest Datasets Retrieved on {max(data_fldrs_dict)}:\n" +\
+        print('\033[1m' + f"\nLatest Datasets Retrieved on {max(data_fldrs_dict)}:\n" +\
               '\033[0m' + f"{data_fldrs_dict}")
 
         # Create dictionary mapping data tracker's latest timestamps.
