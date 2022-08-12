@@ -29,11 +29,14 @@ class TransferBotData():
         self.filter2tracker_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_tracker_ts_files()
         print(f"\nLatest Retrieved Datasets' File Directories:\n{self.filter2tracker_ts_datasets}")
         
-        # Upload timestamped data which do not exist in cloud.
+        # Upload timestamped data which do not exist in cloud and pre-existing ts data on-prem.
         self.upload_dne_data()
-
+        
+        
     def upload_dne_data(self):
         """
+        Upload timestamped data which do not exist in cloud and pre-existing ts data on-prem.
+        
         Args:
             None
             
@@ -48,14 +51,20 @@ class TransferBotData():
         # Check if key is in cloud and if not, then add the key's values to Cloud
         # IF k2 does not exist as key in Cloud, then upload the directories of k2 (filter2tracker_ts_datasets[k2]):
         dne_data = []
+        pre_exist_data = []
         for k, v in self.filter2tracker_ts_datasets.items():
             for ts_tracked, ts_files in v.items():
+                
+                # When a PR occurs regarding the ts datasets, must transfer all 
+                # ts data to cloud. CM's way of notifying developers of updates to 
+                # pre-existing ts data on-prem.
                 if any(ts_tracked in s for s in all_bucket_objects):
-                    print(f"{ts_tracked} Data Exist In Cloud.\n")
-                    
-                    #TODO: Cross-Check difference between cloud and on-prem
-                    # Does a change to the datasets happen on a PR. If not then add this condition as 
-                    # a separate script as oppose to here.
+                    print(f"\n{ts_tracked} Data Exist In Cloud.\n")
+                    print(f'Syncing Pre-Existing {ts_tracked} Data to Cloud ...\n')
+                    for file_dir in ts_files:
+                        upload_wrapper.upload_single_file(file_dir)
+                    print(f"*** Pre-Existing {ts_tracked} Synced to Cloud: Complete! ***") 
+                    pre_exist_data.append(ts_tracked)
                     
                 else:
                     
@@ -67,10 +76,11 @@ class TransferBotData():
                     print(f"{ts_tracked} Upload to Cloud: Complete!") 
                     dne_data.append(ts_tracked)
                     
-        print(f'Datasets Transferred to Cloud:\n{dne_data}')
+        print(f'\nAdded New Timestamp Datasets Transferred to Cloud:\n{dne_data}')
+        print(f'\nSynced Pre-Existing Timestamp Datasets within Cloud:\n{pre_exist_data}')
         
         return
-    
+
 if __name__ == '__main__': 
     
     # Obtain directories for the datasets requested by the user.
