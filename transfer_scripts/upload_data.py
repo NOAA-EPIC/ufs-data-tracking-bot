@@ -240,6 +240,7 @@ class UploadData():
             print(ob)
         objects.delete()
         print(f"\nObjects that have been deleted:\n{objects}")
+        
         return
     
     def get_all_s3_keys(self):
