@@ -239,7 +239,8 @@ class UploadData():
         for ob in objects:
             print(ob)
         objects.delete()
-        print(f"\nCompleted: {key_prefix} prefixed Objects have been deleted")
+        print(f"\nObjects that have been deleted:\n{objects}")
+        
         return
     
     def get_all_s3_keys(self):
