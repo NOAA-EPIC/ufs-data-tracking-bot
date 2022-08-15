@@ -62,12 +62,12 @@ class TransferBotData():
                     print(f"\n{ts_tracked} Data Exist In Cloud.\n")
                     print(f'Syncing Pre-Existing {ts_tracked} Data to Cloud ...\n')
                     
-                    # Remove Pre-existing dataset residing in Cloud by its key prefix 
+                    # Remove pre-existing dataset residing in cloud by its key prefix 
                     # prior to transferring pre-existing dataset's new updated data.
                     # Reason: CMs may alter the data structure for a given ts dataset on-prem.
                     uploader_wrapper.purge_by_keyprefix(ts_tracked)
                     
-                    # Transfer New Pre-existing dataset to cloud.
+                    # Transfer new pre-existing dataset to cloud.
                     for file_dir in ts_files:
                         upload_wrapper.upload_single_file(file_dir)
                     print(f"*** Pre-Existing {ts_tracked} Synced to Cloud: Complete! ***") 
