@@ -65,7 +65,7 @@ class TransferBotData():
                     # Remove pre-existing dataset residing in cloud by its key prefix 
                     # prior to transferring pre-existing dataset's new updated data.
                     # Reason: CMs may alter the data structure for a given ts dataset on-prem.
-                    uploader_wrapper.purge_by_keyprefix(ts_tracked)
+                    upload_wrapper.purge_by_keyprefix(ts_tracked)
                     
                     # Transfer new pre-existing dataset to cloud.
                     for file_dir in ts_files:
