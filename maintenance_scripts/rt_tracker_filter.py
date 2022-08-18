@@ -111,7 +111,7 @@ class RtTrackerFilter():
         if out_of_window_ts != []:
             print(f'\n ** UFS-WM RT Cloud Data w/ Start Retrieval Dates Out of Window Deleted: **\n{out_of_window_ts}') 
         else:
-            print(f'\n ** All UFS-WM RT Cloud Data are w/in Requested Window (Latest {thresh} Days)! **') 
+            print(f'\n ** All UFS-WM RT Cloud Data are w/in Requested Window (Latest {thresh} Days)! **\n') 
         
         return
     
