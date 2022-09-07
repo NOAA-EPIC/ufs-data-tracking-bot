@@ -1,9 +1,9 @@
 <h1 align="center">
-UFS Data Tracking & Maintenance Bot
+UFS Data Tracking & Maintenance Bot:
 </h1>
 
 <h1 align="center">    
-Robotic Process Automation (RPA) for UFS Data Detection, Tracking, Cloud Migration, and Maintenance.
+A Robotic Process Automation (RPA) application for UFS-WM Data Detection, Tracking, Cloud Migration, and Maintenance.
 </h1>
 
 <p align="center">
