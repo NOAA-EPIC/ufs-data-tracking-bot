@@ -2,9 +2,9 @@
 UFS Data Tracking & Maintenance Bot:
 </h1>
 
-<h1 align="center">    
-A Robotic Process Automation (RPA) Application for UFS-WM Data Detection, Tracking, Cloud Migration, and Maintenance.
-</h1>
+<h2 align="center">    
+A Robotic Process Automation (RPA) Application for UFS-WM Data Detection, Tracking, Cloud Migration, & Maintenance
+</h2>
 
 <p align="center">
     <img src="images/tracker_sample_results_img.png" width="1100" height="300">
