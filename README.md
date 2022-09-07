@@ -1,9 +1,9 @@
 <h1 align="center">
-UFS Data Tracking & Maintenance Bot: 
+UFS Data Tracking & Maintenance Bot
 </h1>
 
 <h1 align="center">    
-UFS Data Transferring Automation to Cloud Data Storage
+Robotic Process Automation (RPA) for UFS Data Detection, Tracking, Cloud Migration, and Maintenance.
 </h1>
 
 <p align="center">
@@ -30,7 +30,7 @@ As a result, as EPIC continues to work in parallel with the NOAA development tea
 
 __Purpose:__
 
-The purpose of the UFS Data Tracking & Maintenance Bot is to detect, track, populate, transfer, and perform data maintenance of the UFS timestamped datasets made to the UFS-WM developemnt branch to and in cloud. The application will be able to track the UFS-WM input and baseline dataset revisions of the UFS-WM development code and in response, will migrate each revised dataset to cloud data storage via chaining API calls to communicate with cloud data storage buckets. The application will record the date at which the dataset revisions were pushed out to the UFS-WM dev. code and generate a log ("nested dictionary") for historical reference and usage to perform the data maintenance. Integrated with the data mainentance script, the application will have the capability to retain the datasets supporting the latest 2-months of UFS-WM development code via its feature of a shifting window filter (e.g. 2-month window of retrieved revised datasets from UFS-WM dev. code) -- ultimately, fulfilling the existing data maintenance requirement. 
+The purpose of the UFS Data Tracking & Maintenance Bot is for UFS data detection, tracking, cloud migration, and cloud data maintenance of the UFS timestamped datasets made to the UFS-WM developemnt branch. The application will be able to track the UFS-WM input and baseline dataset revisions of the UFS-WM development code and in response, will migrate each revised dataset to cloud data storage via chaining API calls to communicate with cloud data storage buckets. The application will record the date at which the dataset revisions were pushed out to the UFS-WM dev. code and generate a log ("nested dictionary") for historical reference and usage to perform the data maintenance. Integrated with the data mainentance script, the application will have the capability to retain the datasets supporting the latest 2-months of UFS-WM development code via its feature of a shifting window filter (e.g. 2-month window of retrieved revised datasets from UFS-WM dev. code) -- ultimately, fulfilling the existing data maintenance requirement. 
 
 According to Amazon AWS, the following conditions need to be considered when transferring data to cloud data storage:
 
