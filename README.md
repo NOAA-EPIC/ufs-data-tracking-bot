@@ -9,7 +9,7 @@ A Robotic Process Automation (RPA) Application for UFS-WM Data Detection, Tracki
 <p align="center">
     <img src="images/Jenkins_UFS_Data_Tracking&Maintenance_Bot.png" width="1000" height="500">
     <img src="images/tracker_sample_results_img.png" width="1000" height="500">
-    <img src="images/uploader_transfer_img.png" width="900" height="350">
+    <img src="images/uploader_transfer_img.png" width="500" height="250">
     <img src="images/onprem_datasets_avail_img.png" width="900" height="150">
     <img src="images/cloud_data_bucket_img.png" width="375" height="425">
 </p>
