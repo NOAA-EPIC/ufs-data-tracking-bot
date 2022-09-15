@@ -33,20 +33,13 @@ __Purpose:__
 
 The purpose of the UFS-WM Data Tracking & Maintenance Bot is for UFS data detection, tracking, cloud migration, and cloud data maintenance of the UFS-WM timestamped datasets made to the UFS-WM developemnt branch. The application will be able to track the UFS-WM input and baseline dataset revisions of the UFS-WM development code and in response, will migrate each revised dataset to cloud data storage via chaining API calls to communicate with cloud data storage buckets. The application will record the date at which the dataset revisions were pushed out to the UFS-WM dev. code and generate a log ("nested dictionary") for historical reference and usage to perform the data maintenance. Integrated with the data mainentance script, the application will have the capability to retain the datasets supporting the latest 2-months of UFS-WM development code via its feature of a shifting window filter (e.g. 2-month window of retrieved revised datasets from UFS-WM dev. code) -- ultimately, fulfilling the existing data maintenance requirement. 
 
-According to Amazon AWS, the following conditions need to be considered when transferring data to cloud data storage:
-
-* Largest object that can be uploaded in a single PUT is 5 GB.
-* Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 TB.
-* For objects larger than 100 MB, Amazon recommends using the Multipart Upload capability.
-* The total volume of data in a cloud data storage bucket are unlimited.
-
-Tools which could be be utilized to perform data transferring & partitioning (Multipart Upload/Download) are:
+The following tools could be be utilized to perform data transferring & partitioning (Multipart Upload/Download) are:
 
 * AWS SDK
 * AWS CLI
 * AWS S3 REST API
 
-All of the AWS provided tools are built on Boto3.
+All of these AWS provided tools are built on top of Boto3.
 
 In this demonstration, the framework will implement Python AWS SDK for transferring the tracked UFS datasets from the RDHPCS, Orion, to the cloud data storage with low latency.
 
@@ -54,21 +47,31 @@ The AWS SDK will be implemented for the following reasons:
 * To integrate with other python scripts.
 * AWS SDK carries addition capabilities/features for data manipulation & transferring compare to the aforementioned alternate tools.
 
+According to Amazon AWS, the following conditions must be met when transferring data to cloud data storage:
+
+* Largest object that can be uploaded in a single PUT is 5 GB.
+* Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 TB.
+* For objects larger than 100 MB, Amazon recommends using the Multipart Upload capability.
+* The total volume of data in a cloud data storage bucket are unlimited.
+
 __Capabilities:__
 
-This script will be able to perform the following actions:
-* Extract single file daily & parse
-* Client makes a direct request for rt.sh from GitHub
-* rt.sh is read, preprocessed & extracts the timestamps of the relevant UFS datasets which has been pushed on GitHub.
-* Generates a file containing the datasets' timestamps
-* Program will compare the last log file with the most recent file containing the datasets' timestamps.
-
-This bot will be able to perform the following actions:
+This RPA application will be able to perform the following actions:
+* Client makes a direct request for rt.sh from GitHub.
+* Extract and parse relevant information from file of interest. The file of interest (rt.sh) is read, preprocessed & extracted -- the timestamps of the latest merged UFS datasets on GitHub is recorded.
+* Generates a historical log file containing the merged datasets' timestamps
+* Program will compare the historical log file with the most recent historical file containing the datasets' timestamps and update the latest historical log file.
+* Latest datasets merged to UFS-WM is synced and migrated to S3 cloud. 
 * Multi-threading & partitioning to the datasets to assist in the optimization in uploading performance of the datasets from on-prem to cloud as it tracks the PR'd timestamped dataset updates pushed by developers & approved by code manager(s) of the UFS-WM.
-
+* Running weekly, the application will retain the datasets in cloud for which supports the latest 2-months of UFS-WM development code. Performed by an integrated data maintenance script, which will perform the 2 months window shift of datasets to maintain the NOAA development teams' code managers current practice and fulfill the stored data requirements.
 
 __Future Capabilities:__
-Will be integrated with another script, which will perform the 2 months window shift of datasets to maintain the NOAA development teams' code managers current practice and fulfill the stored data requirements.
+
+This RPA application will allow:
+
+* Automation -- time and efficiency.
+* Assist in the new CM transitioning for the UFS-WM repo via preserving the traditional maintenance performed by legacy teams until further plans are made in improving the way the UFS-WM is being handled by new team.
+* Reduces human error that can be resolved by the application as much as possible given the current UFS-WM structure/process.
 
 # Table of Contents
 * [Prerequisites](#Prerequisites)
