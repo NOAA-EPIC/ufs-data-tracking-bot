@@ -74,6 +74,7 @@ This RPA application will allow:
 * Reduces human error that can be resolved by the application as much as possible given the current UFS-WM structure/process.
 
 # Table of Contents
+
 * [Prerequisites](#Prerequisites)
 * [Dataset](#Dataset)
 * [Quick Start](#Quick-Start)
@@ -84,18 +85,22 @@ This RPA application will allow:
 * [References](#Reference(s))
 
 # Prerequisites
+
 * Python 3.9
 * Setting up AWS CLI configurations for uploading to Cloud.
 * Setting up conda environment w/in RDHPCS.
     * Refer to [Environment Setup](#Environment-Setup)
 
 # Dataset
+
 * On-prem Orion
 
 # Quick Start
+
 * For demonstration purposes, refer to 'rt_revision_tracker_scripts_demo.ipynb'
 
 # Environment Setup:
+
 Install miniconda on your machine. Note: Miniconda is a smaller version of Anaconda that only includes conda along with a small set of necessary and useful packages. With Miniconda, you can install only what you need, without all the extra packages that Anaconda comes packaged with:
 Download latest Miniconda (e.g. 3.9 version):
 
