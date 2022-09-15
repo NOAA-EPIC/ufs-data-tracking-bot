@@ -137,9 +137,12 @@ conda env create -f environment.yml
 *Note: A .yml file is a text file that contains a list of dependencies, which channels a list for installing dependencies for the given conda environment. For the code to utilize the dependencies, you will need to be in the directory where the environment.yml file lives.
 
 ## Activate the new environment via:
+
 conda activate [Name of your conda environment you wish to activate]
+
 Verify that the new environment was installed correctly via:
 conda info --env
+
 *Note:
 
 From this point on, must activate conda environment prior to .py script(s) or jupyter notebooks execution using the following command: conda activate
