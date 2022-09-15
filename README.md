@@ -105,17 +105,17 @@ This RPA application will allow:
 * Install miniconda on your machine. Note: Miniconda is a smaller version of Anaconda that only includes conda along with a small set of necessary and useful packages. With Miniconda, you can install only what you need, without all the extra packages that Anaconda comes packaged with:
 Download latest Miniconda (e.g. 3.9 version):
 
-wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh
+    * wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh
 
 * Check integrity downloaded file with SHA-256:
 
-sha256sum Miniconda3-py39_4.9.2-Linux-x86_64.sh
+    * sha256sum Miniconda3-py39_4.9.2-Linux-x86_64.sh
 
 Reference SHA256 hash in following link: https://docs.conda.io/en/latest/miniconda.html
 
-### Install Miniconda in Linux:
+* Install Miniconda in Linux:
 
-bash Miniconda3-py39_4.9.2-Linux-x86_64.sh
+    * bash Miniconda3-py39_4.9.2-Linux-x86_64.sh
 
 * Next, Miniconda installer will prompt where do you want to install Miniconda. Press ENTER to accept the default install location i.e. your $HOME directory. If you don't want to install in the default location, press CTRL+C to cancel the installation or mention an alternate installation directory. If you've chosen the default location, the installer will display “PREFIX=/var/home//miniconda3” and continue the installation.
 
@@ -151,7 +151,7 @@ conda activate [Name of your conda environment you wish to activate]
 
 * Verify that the new environment was installed correctly via:
 
-conda info --env
+    * conda info --env
 
 *Note:
 
@@ -163,7 +163,7 @@ conda info --env
 
 * Unfortunately, there is no way to navigate to the "/work/" filesystem from within the Jupyter interface when working on the remote server, Orion. The best way to workaround is to create a symbolic link in your home folder that will take you to the /work/ filesystem. Run the following command from a linux terminal on Orion to create the link:
 
-ln -s /work /home/[Your user account name]/work
+    * ln -s /work /home/[Your user account name]/work
 
 * Now, when you navigate to the /home/[Your user account name]/work directory in Jupyter, it will take you to the /work folder. Allowing you to obtain any data residing within the /work filesystem that you have permission to access from Jupyter. This same procedure will work for any filesystem available from the root directory.
 
@@ -177,19 +177,17 @@ Login to https://orion-ood.hpc.msstate.edu/
 
 * In the Open OnDemand Interface, select Interactive Apps > Jupyter Notbook
 
-* Set the following configurations to run Jupyter:
-
 ### Additonal Information
 
 To create a .yml file, execute the following commands:
 
 * Activate the environment to export:
 
-conda activate myenv
+    * conda activate myenv
 
 * Export your active environment to a new file:
 
-conda env export > [ENVIRONMENT FILENAME].yml
+    * conda env export > [ENVIRONMENT FILENAME].yml
 
 # Status
 [![Version badge](https://img.shields.io/badge/Python-3.9-blue.svg)](https://shields.io/)
