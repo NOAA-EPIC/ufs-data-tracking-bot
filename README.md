@@ -105,35 +105,42 @@ Install miniconda on your machine. Note: Miniconda is a smaller version of Anaco
 Download latest Miniconda (e.g. 3.9 version):
 
 wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh
+
 Check integrity downloaded file with SHA-256:
 
 sha256sum Miniconda3-py39_4.9.2-Linux-x86_64.sh
+
 Reference SHA256 hash in following link: https://docs.conda.io/en/latest/miniconda.html
 
 ## Install Miniconda in Linux:
 
 bash Miniconda3-py39_4.9.2-Linux-x86_64.sh
+
 Next, Miniconda installer will prompt where do you want to install Miniconda. Press ENTER to accept the default install location i.e. your $HOME directory. If you don't want to install in the default location, press CTRL+C to cancel the installation or mention an alternate installation directory. If you've chosen the default location, the installer will display “PREFIX=/var/home//miniconda3” and continue the installation.
 
 For installation to take into effect, run the following command:
 
 source ~/.bashrc
+
 Next, you will see the prefix (base) in front of your terminal/shell prompt. Indicating the conda's base environment is activated.
 
 Once you have conda installed on your machine, perform the following to create a conda environment:
 To create a new environment (if a YAML file is not provided)
 
 conda create -n [Name of your conda environment you wish to create]
+
 (OR)
 
 To ensure you are running Python 3.9:
 
 conda create -n myenv Python=3.9
+
 (OR)
 
 To create a new environment from an existing YAML file (if a YAML file is provided):
 
 conda env create -f environment.yml
+
 *Note: A .yml file is a text file that contains a list of dependencies, which channels a list for installing dependencies for the given conda environment. For the code to utilize the dependencies, you will need to be in the directory where the environment.yml file lives.
 
 ## Activate the new environment via:
@@ -150,9 +157,11 @@ To deactivate a conda environment:
 conda deactivate
 
 ## Link Home Directory to Dataset Location on RDHPCS Platform
-Unfortunately, there is no way to navigate to the /work/ filesystem from within the Jupyter interface. The best way to workaround is to create a symbolic link in your home folder that will take you to the /work/ filesystem. Run the following command from a linux terminal on Orion to create the link:
+
+Unfortunately, there is no way to navigate to the "/work/" filesystem from within the Jupyter interface when working on the remote server, Orion. The best way to workaround is to create a symbolic link in your home folder that will take you to the /work/ filesystem. Run the following command from a linux terminal on Orion to create the link:
 
 ln -s /work /home/[Your user account name]/work
+
 Now, when you navigate to the /home/[Your user account name]/work directory in Jupyter, it will take you to the /work folder. Allowing you to obtain any data residing within the /work filesystem that you have permission to access from Jupyter. This same procedure will work for any filesystem available from the root directory.
 
 *Note: On Orion, user must sym link from their home directory to the main directory containing the datasets of interest.
@@ -168,6 +177,7 @@ To create a .yml file, execute the following commands:
 ## Activate the environment to export:
 
 conda activate myenv
+
 Export your active environment to a new file:
 
 conda env export > [ENVIRONMENT FILENAME].yml
