@@ -87,14 +87,14 @@ This RPA application will allow:
 
 # Prerequisites
 
-* Python 3.9 
+* Python 3.9
 * Setting up AWS CLI configurations for uploading to Cloud.
 * Setting up conda environment w/in RDHPCS.
     * Refer to [Environment Setup](#Environment-Setup)
 
 # Dataset
 
-* Currently, data resides on RDHPCS, Orion
+* Currently, data resides on RDHPCS. 
 
 # Quick Start
 
