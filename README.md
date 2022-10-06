@@ -41,13 +41,14 @@ The following tools could be be utilized to perform data transferring & partitio
 
 All of these AWS provided tools are built on top of Boto3.
 
-In this demonstration, the framework will implement Python AWS SDK for transferring the tracked UFS datasets from the RDHPCS, Orion, to the cloud data storage with low latency.
+In this demonstration, the framework will implement Python AWS SDK for transferring the tracked UFS datasets from the RDHPCS, Orion, to the cloud data storage with the capability of reducing latency via tuning the boto3 parameters.
 
 The AWS SDK will be implemented for the following reasons:
-* To integrate with other python scripts.
-* AWS SDK carries addition capabilities/features for data manipulation & transferring compare to the aforementioned alternate tools.
+* AWS SDK carries addition capabilities/features for data manipulation & transferring compare to the aforementioned alternate tools
+* All for easy code integration with other python scripts.
+* Will leverage any APIs and all the development tools to develop a standardized application.
 
-According to Amazon AWS, the following conditions must be met when transferring data to cloud data storage:
+According to Amazon's AWS, the following conditions must be met when transferring data to cloud data storage:
 
 * Largest object that can be uploaded in a single PUT is 5 GB.
 * Individual Amazon S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 TB.
