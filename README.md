@@ -101,7 +101,7 @@ This RPA application will allow:
 
 * For demonstration purposes, refer to 'rt_revision_tracker_scripts_demo.ipynb'
 
-# Environment Setup:
+# Environment Setup
 
 * Install miniconda on your machine. Note: Miniconda is a smaller version of Anaconda that only includes conda along with a small set of necessary and useful packages. With Miniconda, you can install only what you need, without all the extra packages that Anaconda comes packaged with:
 Download latest Miniconda (e.g. 3.9 version):
