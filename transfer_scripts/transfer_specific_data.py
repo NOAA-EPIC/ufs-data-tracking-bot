@@ -1,7 +1,7 @@
 from get_timestamp_data import GetTimestampData
 from progress_bar import ProgressPercentage
 from upload_data import UploadData
-
+import sys
 
 class TransferSpecificData():
     """
@@ -9,35 +9,48 @@ class TransferSpecificData():
     
     """
     
-    def __init__(self, input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir, platform="orion"):
+    def __init__(self, input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir, data_dir): #platform="orion"):
         """
         Args: 
              linked_home_dir (str): User directory linked to the RDHPCS' root
                                     data directory.
-             platform (str): RDHPCS of where the datasets will be sourced.
+             data_dir (str): Driectory of where the datasets will be sourced on RCHPCS.
         """
-    
         # Establish locality of where the datasets will be sourced.
-        self.linked_home_dir =  linked_home_dir
-
-        if platform == "orion":
-            self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        if linked_home_dir == None:
+            self.linked_home_dir = ""
         else:
-            print("Select a different platform.")
+            self.linked_home_dir = linked_home_dir
+            
+        # Data directory on RDHPCS.
+        self.data_dir = data_dir
+        
+        ## If dev team decides to go by platform names with fixed paths, then ...
+        #if platform == "orion":
+        #    self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #elif platform == "hera":
+        #    self.hera_rt_data_dir = "/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #else:
+        #    print("Select a different platform.")
     
-        # Select timestamp dataset to transfer from RDHPCS on-disk to cloud
+        # Select timestamp dataset to transfer from RDHPCS on-disk to cloud.
         self.input_ts, self.bl_ts, self.ww3_input_ts, self.bmic_ts = input_ts, bl_ts, ww3_input_ts, bmic_ts
-        self.filter2specific_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_specific_ts_files(input_ts, bl_ts, ww3_input_ts, bmic_ts)
+        self.filter2specific_ts_datasets = GetTimestampData(self.linked_home_dir + self.data_dir, None).get_specific_ts_files(input_ts, bl_ts, ww3_input_ts, bmic_ts)
 
-        # Upload datasets requested by user.
-        UploadData(self.orion_rt_data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
-        #print("Reach to upload")        
-        #print(self.filter2specific_ts_datasets.keys())
-        #print(self.filter2specific_ts_datasets)
+        # Upload datasets requested by user. 
+        UploadData(self.linked_home_dir + self.data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
+        
+        ## If dev team decides to go by platform names with fixed paths, then ...
+        #if platform == "orion":
+        #    UploadData(self.orion_rt_data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
+        #if platform == "hera":
+        #    UploadData(self.hera_rt_data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
     
         
 if __name__ == '__main__': 
     
     # Obtain directories for the datasets requested by the user.
-    input_ts, bl_ts, ww3_input_ts, bmic_ts = [], ['develop-20220304'], [], []
-    TransferSpecificData(input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir="/home/schin", platform="orion")
+    input_ts, bl_ts, ww3_input_ts, bmic_ts = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+    linked_home_dir = sys.argv[5]
+    data_dir = sys.argv[6]
+    TransferSpecificData(input_ts, bl_ts, ww3_input_ts, bmic_ts, linked_home_dir, data_dir)

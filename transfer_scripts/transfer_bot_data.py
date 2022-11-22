@@ -1,32 +1,40 @@
 from get_timestamp_data import GetTimestampData
 from progress_bar import ProgressPercentage
 from upload_data import UploadData
-
+import sys
 
 class TransferBotData():
     """
     Obtain directories for the datasets tracked by the data tracker bot.
     
     """
-    def __init__(self, linked_home_dir, platform="orion"):
+    def __init__(self, linked_home_dir, data_dir): #platform="orion"):
         """
         Args: 
              linked_home_dir (str): User directory linked to the RDHPCS' root
                                     data directory.
-             platform (str): RDHPCS of where the datasets will be sourced.
+             data_dir (str): Driectory of where the datasets will be sourced on RCHPCS.
         """
-    
         # Establish locality of where the datasets will be sourced.
-        self.linked_home_dir =  linked_home_dir
-
-        if platform == "orion":
-            self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        if linked_home_dir == None:
+            self.linked_home_dir = ""
         else:
-            print("Select a different platform.")
+            self.linked_home_dir = linked_home_dir
+            
+        # Data directory on RDHPCS.
+        self.data_dir = data_dir
+        
+        ## If dev team decides to go by platform names with fixed paths, then ...
+        #if platform == "orion":
+        #    self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #elif platform == "hera":
+        #     self.hera_rt_data_dir = "/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #else:
+        #    print("Select a different platform.")
     
             
         # Filter to data tracker bot's timestamps & extract their corresponding UFS data file directories.
-        self.filter2tracker_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_tracker_ts_files()
+        self.filter2tracker_ts_datasets = GetTimestampData(self.linked_home_dir + self.data_dir, None).get_tracker_ts_files()
         print(f"\nLatest Retrieved Datasets' File Directories:\n{self.filter2tracker_ts_datasets}")
         
         # Upload timestamped data which do not exist in cloud and pre-existing ts data on-prem.
@@ -43,7 +51,7 @@ class TransferBotData():
         Return: None
         
         """
-        upload_wrapper = UploadData(self.orion_rt_data_dir, self.filter2tracker_ts_datasets, use_bucket='rt')
+        upload_wrapper = UploadData(self.linked_home_dir + self.data_dir, self.filter2tracker_ts_datasets, use_bucket='rt')
         
         # Determine all s3 object keys.
         all_bucket_objects = upload_wrapper.get_all_s3_keys()
@@ -90,5 +98,12 @@ class TransferBotData():
 
 if __name__ == '__main__': 
     
-    # Obtain directories for the datasets requested by the user.
-    TransferBotData(linked_home_dir="", platform="orion")
+    # Obtain directories for the datasets requested by the bot.
+    """
+    Your Home Directory on RDHPCS: linked_home_dir = "/home/[USERNAME ON RDHPCS]"
+    UFS-WM RT Data Directory on Orion: data_dir = "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+    UFS-WM RT Data Directory on Hera: data_dir = "/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/"
+    """
+    linked_home_dir = sys.argv[1]
+    data_dir = sys.argv[2]
+    TransferBotData(linked_home_dir, data_dir)

@@ -7,36 +7,51 @@ import itertools
 from get_timestamp_data import GetTimestampData
 from progress_bar import ProgressPercentage
 from upload_data import UploadData
-
+import sys
 
 class RtTrackerFilter():
     
     """
-    Define window to filter cloud datasets by retrieval date In this scenario, capturing latest 60 days of data.
+    Define window to filter cloud datasets by retrieval date. In this scenario, capturing latest 60 days of data.
     
     """
     
-    def __init__(self, linked_home_dir, platform="orion"):
+    def __init__(self, linked_home_dir, data_dir): #platform="orion"):
+        """
+        Args: 
+             linked_home_dir (str): User directory linked to the RDHPCS' root
+                                    data directory.
+             data_dir (str): Driectory of where the datasets will be sourced on RCHPCS.
+        """
 
         # Recall data tracker bot's latest log/dictionary file featuring timestamped data residing in cloud.
         with open("../tracker_scripts/track_ts/latest_rt.sh.pk", 'rb') as handle:
             self.data_log_dict = pickle.load(handle)  
        
         # Establish locality of where the datasets will be sourced.
-        self.linked_home_dir =  linked_home_dir
-
-        if platform == "orion":
-            self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        if linked_home_dir == None:
+            self.linked_home_dir = ""
         else:
-            print("Select a different platform.")
+            self.linked_home_dir = linked_home_dir
+            
+        # Data directory on RDHPCS.
+        self.data_dir = data_dir
+        
+        ## If dev team decides to go by platform names with fixed paths, then ...
+        #if platform == "orion":
+        #    self.orion_rt_data_dir = self.linked_home_dir + "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #elif platform == "hera":
+        #     self.hera_rt_data_dir = "/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/"
+        #else:
+        #    print("Select a different platform.")
     
             
         # Filter to data tracker bot's timestamps & extract their corresponding UFS data file directories.
-        self.filter2tracker_ts_datasets = GetTimestampData(self.orion_rt_data_dir, None).get_tracker_ts_files()
+        self.filter2tracker_ts_datasets = GetTimestampData(self.linked_home_dir + self.data_dir, None).get_tracker_ts_files()
         print(f"\nLatest Retrieved Datasets' File Directories:\n{self.filter2tracker_ts_datasets}")
         
         # Instantiate wrapper for data purging.
-        self.upload_wrapper = UploadData(self.orion_rt_data_dir, self.filter2tracker_ts_datasets, use_bucket='rt')
+        self.upload_wrapper = UploadData(self.linked_home_dir + self.data_dir, self.filter2tracker_ts_datasets, use_bucket='rt')
             
 
     def maintenance_window(self, thresh = 60):
@@ -118,4 +133,5 @@ class RtTrackerFilter():
 if __name__ == '__main__': 
     
     # Maintain cloud datasets by retrieval date & retain data w/in latest 60 days of revisions.
-    RtTrackerFilter(linked_home_dir="", platform="orion").maintenance_window(60)
+    linked_home_dir, data_dir = sys.argv[1], sys.argv[2]
+    RtTrackerFilter(linked_home_dir, data_dir).maintenance_window(60)
