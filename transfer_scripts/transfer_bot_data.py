@@ -100,7 +100,7 @@ if __name__ == '__main__':
     
     # Obtain directories for the datasets requested by the bot.
     """
-    Your Home Directory on RDHPCS: linked_home_dir = "/home/[USERNAME ON RDHPCS]"
+    Your Home Directory on RDHPCS: linked_home_dir = "/home/[USERNAME ON RDHPCS]" or None
     UFS-WM RT Data Directory on Orion: data_dir = "/work/noaa/nems/emc.nemspara/RT/NEMSfv3gfs/"
     UFS-WM RT Data Directory on Hera: data_dir = "/scratch1/NCEPDEV/nems/emc.nemspara/RT/NEMSfv3gfs/"
     """
