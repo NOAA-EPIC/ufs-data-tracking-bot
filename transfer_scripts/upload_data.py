@@ -25,7 +25,7 @@ class UploadData():
                               storage bucket designated for the UFS RT datasets.
         """
         
-        # Main on-prem directory to locate the datasets. 
+        # Asolute data directory on-prem to locate the datasets. 
         self.hpc_dir = hpc_dir
         
         # List of data files' relative directory paths on-prem. 
