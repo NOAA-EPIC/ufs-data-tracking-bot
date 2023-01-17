@@ -1,6 +1,7 @@
 import os 
 import pickle
 from collections import defaultdict
+import datetime
 
 
 class GetTimestampData():
@@ -176,10 +177,15 @@ class GetTimestampData():
                          ww3_input_ts.append(f'WW3_input_data_{ts}')
             data_fldrs_dict[retrieval_date] = input_ts, bl_ts, ww3_input_ts, bmic_ts
             
-        # Extract latest retrival date's recorded timestamped datasets. 
-        input_ts, bl_ts, ww3_input_ts, bmic_ts = data_fldrs_dict[max(data_fldrs_dict)]
-        print('\033[1m' + f"\nLatest Datasets Retrieved on {max(data_fldrs_dict)}:\n" +\
-              '\033[0m' + f"{data_fldrs_dict}")
+        # Convert retrieval dates to datetime format.
+        dt_data_fldrs_dict = {}
+        for retrieval_date, dataset_list in data_fldrs_dict.items():
+            dt_data_fldrs_dict[datetime.datetime.strptime(retrieval_date, "%m-%d-%Y")] = dataset_list
+    
+        # Extract latest retrieval date's recorded timestamped datasets. 
+        input_ts, bl_ts, ww3_input_ts, bmic_ts = dt_data_fldrs_dict[max(dt_data_fldrs_dict)]
+        print('\033[1m' + f"\nLatest Datasets Retrieved on {max(dt_data_fldrs_dict)}  (Format: Datetime):\n" + 
+              '\033[0m' + dt_data_fldrs_dict[max(dt_data_fldrs_dict)])
 
         # Create dictionary mapping data tracker's latest timestamps.
         tracker_ts_dict = defaultdict(list)
