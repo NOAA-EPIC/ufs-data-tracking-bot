@@ -7,7 +7,6 @@ import itertools
 from get_timestamp_data import GetTimestampData
 from progress_bar import ProgressPercentage
 from upload_data import UploadData
-import sys
 
 class RtTrackerFilter():
     
