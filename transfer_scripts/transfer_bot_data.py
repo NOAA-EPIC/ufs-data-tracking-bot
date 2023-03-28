@@ -35,7 +35,11 @@ class TransferBotData():
             
         # Filter to data tracker bot's timestamps & extract their corresponding UFS data file directories.
         self.filter2tracker_ts_datasets = GetTimestampData(self.linked_home_dir + self.data_dir, None).get_tracker_ts_files()
-        print(f"\nLatest Retrieved Datasets' File Directories:\n{self.filter2tracker_ts_datasets}")
+        print(f"\nLatest Retrieved Datasets' File Directories:\n{self.filter2tracker_ts_datasets}\n")
+        
+        # Detect if data of interest was not given read permission by the UFS-WM code manager.
+        if self.filter2tracker_ts_datasets == {}:
+            print("\n*NOTE: At least one of the data parent directory that was requested from on-prem was not set with readable permissions. Prevents full data migration to cloud. Contact the appropriate UFS-WM code manager to resolve this issue.\n")
         
         # Upload timestamped data which do not exist in cloud and pre-existing ts data on-prem.
         self.upload_dne_data()
