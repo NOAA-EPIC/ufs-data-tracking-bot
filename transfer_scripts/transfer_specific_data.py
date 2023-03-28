@@ -39,7 +39,7 @@ class TransferSpecificData():
         
         # Detect if data of interest was not given read permission by the UFS-WM code manager.
         if self.filter2specific_ts_datasets == {}:
-            print("\nNOTE: At least one of the data parent directory that was requested from on-prem was not set with readable permissions. Prevents full data migration to cloud.  Contact the appropriate UFS-WM code manager to resolve this issue.")
+            print("\n*NOTE: At least one of the data parent directory that was requested from on-prem was not set with readable permissions. Prevents full data migration to cloud. Contact the appropriate UFS-WM code manager to resolve this issue.\n")
             
         # Upload datasets requested by user. 
         UploadData(self.linked_home_dir + self.data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
