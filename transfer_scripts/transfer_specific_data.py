@@ -37,9 +37,9 @@ class TransferSpecificData():
         self.input_ts, self.bl_ts, self.ww3_input_ts, self.bmic_ts = input_ts, bl_ts, ww3_input_ts, bmic_ts
         self.filter2specific_ts_datasets = GetTimestampData(self.linked_home_dir + self.data_dir, None).get_specific_ts_files(input_ts, bl_ts, ww3_input_ts, bmic_ts)
         
-        # Detect if data of interest was not given read permission.
+        # Detect if data of interest was not given read permission by the UFS-WM code manager.
         if self.filter2specific_ts_datasets == {}:
-            print("\nAt least one of the data parent directory that was requested from on-prem was not set with readable permissions. Prevents full data migration to cloud.  Contact the appropriate UFS-WM code manager to resolve this issue.")
+            print("\nNOTE: At least one of the data parent directory that was requested from on-prem was not set with readable permissions. Prevents full data migration to cloud.  Contact the appropriate UFS-WM code manager to resolve this issue.")
             
         # Upload datasets requested by user. 
         UploadData(self.linked_home_dir + self.data_dir, self.filter2specific_ts_datasets, use_bucket='rt').upload_files2cloud()
