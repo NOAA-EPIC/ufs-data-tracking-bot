@@ -76,7 +76,7 @@ This RPA application will allow:
 
 # Prerequisites
 
-* Setting up AWS CLI configurations for uploading to Cloud.
+* Setting up AWS CLI configurations for uploading to cloud.
 * Setting up conda environment w/in RDHPCS.
     * Refer to [Environment Setup](#Environment-Setup)
 * [![Version badge](https://img.shields.io/badge/Python-3.9-blue.svg)](https://shields.io/)
