@@ -74,17 +74,6 @@ This RPA application will allow:
 * Assist in the new CM transitioning for the UFS-WM repo via preserving the traditional maintenance performed by legacy teams until further plans are made in improving the way the UFS-WM is being handled by new team.
 * Reduces human error that can be resolved by the application as much as possible given the current UFS-WM structure/process.
 
-# Table of Contents
-
-* [Prerequisites](#Prerequisites)
-* [Dataset](#Dataset)
-* [Quick Start](#Quick-Start)
-* [Environment Setup](#Environment-Setup) 
-* [Status](#Status)
-* [What's Included](#What's-Included)
-* [Documentation](#Documentation)
-* [References](#Reference(s))
-
 # Prerequisites
 
 * Setting up AWS CLI configurations for uploading to Cloud.
