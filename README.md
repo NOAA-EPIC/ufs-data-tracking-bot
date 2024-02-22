@@ -16,7 +16,7 @@ A Robotic Process Automation (RPA) Application for UFS-WM Data Detection, Tracki
 
 <h5 align="center">
     
-[About](#About) • [Prerequisites](#Prerequisites) • [Quick Start](#Quick-Start) • [Environment Setup](#Environment-Setup) • [What's Included](#What's-Included) • [Status](#Status) • [Version](#Version) • [Documentation](#Documentation) 
+[About](#About) • [Prerequisites](#Prerequisites) • [Quick Start](#Quick-Start) • [Environment Setup](#Environment-Setup) • [What's Included](#What's-Included) • [Status](#Status) • [Version](#Version)
 
 </h5>
 
@@ -216,9 +216,6 @@ Within the download, you will find the following directories and files:
     * cloud_xfer_env.yml (For Transfer Scripts)
     * cloud_maintenance_env.yml (For Maintenance ("Filter") Script)
 
-# Documentation
-* Refer to rt_revision_tracker_scripts_demo.ipynb
-* Refer to data_xfer2cloud_scripts_demo.ipynb
 
 # Status
 
@@ -226,4 +223,4 @@ Within the download, you will find the following directories and files:
 [![Build badge](https://img.shields.io/badge/build-passing-blue)](https://shields.io/)
 
 # Version:
-* Draft as of 07/12/22
+* Draft as of 02/22/24
