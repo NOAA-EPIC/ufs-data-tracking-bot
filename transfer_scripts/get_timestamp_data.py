@@ -110,8 +110,8 @@ class GetTimestampData():
         
         # ********************************** REMARK (as of 07/14/22) ************************************                   
         # Filter out the prefix underscore. 
-        # REMARK (as of 07/14/22): The EMC protocol of prefix underscore to datasets must be removed in near future !!!
-        # It is not an ideal protocol and should not be used! WILL REMOVE CONDITION below WHEN CM (POC: Jong)
+        # REMARK/RECOMMENDATION (as of 07/14/22): The EMC protocol of prefix underscore to datasets must be removed in near future !!!
+        # It is not an ideal protocol and should not be used! WILL REMOVE CONDITION below WHEN CM team's PO
         # REMOVES THIS EMC PROTOCOL
         # ***********************************************************************************************   
 
