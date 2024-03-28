@@ -205,7 +205,7 @@ class rt_revision_tracker():
         data_bytes = json.dumps(data_bytes) 
         data_bytes = json.loads(data_bytes)   
         with open(self.latest_results_root + retrieved_results_fn, 'w') as raw_bytes_file:
-            raw_bytes_file.write(data_bytes) # <------ 
+            raw_bytes_file.write(data_bytes)
             #raw_bytes_file.write(str(data_bytes['payload']['blob']))
         print('\033[94m\033[1m\nRetrieved rt.sh saved as latest rt.sh version...\033[0m')
         
