@@ -1,6 +1,6 @@
 import os
 import shutil
-from urllib.request import urlopen # <------
+from urllib.request import urlopen
 from datetime import datetime
 import hashlib
 from collections import defaultdict
@@ -41,7 +41,7 @@ class rt_revision_tracker():
             
         # File of interest's source.
         self.url = 'https://github.com/ufs-community/ufs-weather-model/blob/develop/tests/rt.sh'
-        self.url_bl = 'https://github.com/ufs-community/ufs-weather-model/blob/develop/tests/bl_date.conf'  
+        self.url_bl = 'https://github.com/ufs-community/ufs-weather-model/raw/develop/tests/bl_date.conf'  
         
     def parser(self, fn, bl_fn, data_log_dict):
         """
@@ -141,7 +141,7 @@ class rt_revision_tracker():
             pickle.dump(dict(data_log_dict), pk_handle, protocol=pickle.HIGHEST_PROTOCOL)
         os.rename(fn + '.pk', self.latest_results_root + self.latest_results_fn + '.pk')   
 
-        return data_log_dict*
+        return data_log_dict
 
     def sha1(self, fn):
         """
@@ -198,34 +198,25 @@ class rt_revision_tracker():
         
 
         """ 
-        # Read/write file comprised of non-baseline datasets to disk.
-        # Change in locality of where data timestamps are recorded occurred ~ 08/2024
         
-        # INITIAL APPROACH
-#         data_bytes = urlopen(self.url, context=ssl.SSLContext()).read()
-#         retrieved_results_fn = '{}_rt.sh'.format(datetime.now().strftime("%m-%d-%Y"))        
-#         with open(self.latest_results_root + retrieved_results_fn, 'w') as raw_bytes_file:
-#             raw_bytes_file.write(data_bytes.decode('utf-8'))
-#             #print('##### *******', data_bytes.decode('utf-8'))
-#         print('\033[94m\033[1m\nRetrieved rt.sh saved as latest rt.sh version...\033[0m')
-
         # Read/write file comprised of non-baseline datasets to disk.
         # Change in locality of where data timestamps are recorded occurred ~ 08/2024
-        data_bytes = requests.get(self.url).content
-        data_bytes = json.loads(data_bytes.decode('utf-8'))
-        retrieved_results_fn = '{}_rt.sh'.format(datetime.now().strftime("%m-%d-%Y"))        
+        data_bytes = requests.get(self.url).content.decode('utf-8')
+        data_bytes = json.dumps(data_bytes) 
+        data_bytes = json.loads(data_bytes)   
         with open(self.latest_results_root + retrieved_results_fn, 'w') as raw_bytes_file:
-            raw_bytes_file.write(str(data_bytes['payload']['blob']))
-            #print('##### *******', data_bytes['payload']['blob'])
+            raw_bytes_file.write(data_bytes) # <------ 
+            #raw_bytes_file.write(str(data_bytes['payload']['blob']))
         print('\033[94m\033[1m\nRetrieved rt.sh saved as latest rt.sh version...\033[0m')
         
         # Read/write file comprised of baseline dataset to disk.
-        data_bytes_bl = requests.get(self.url_bl).content
-        data_bytes_bl = json.loads(data_bytes_bl.decode('utf-8'))
+        data_bytes_bl = requests.get(self.url_bl).content.decode('utf-8')
+        data_bytes_bl = json.dumps(data_bytes_bl)
+        data_bytes_bl = json.loads(data_bytes_bl)
         retrieved_results_bl_fn= '{}_bl_date.conf'.format(datetime.now().strftime("%m-%d-%Y"))
         with open(self.latest_results_root + retrieved_results_bl_fn, 'w') as raw_bytes_file_bl:
-            raw_bytes_file_bl.write(str(data_bytes_bl['payload']['blob']['rawLines']))
-            #print('##### *******', data_bytes_bl['payload']['blob']['rawLines'])
+            raw_bytes_file_bl.write(data_bytes_bl)
+            #raw_bytes_file_bl.write(str(data_bytes_bl['payload']['blob']['rawLines']))
         print('\033[94m\033[1m\nRetrieved bl_date.conf saved as latest bl_date.conf version...\033[0m')
             
         # Parse retrieved file.
